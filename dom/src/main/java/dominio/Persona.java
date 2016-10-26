@@ -10,7 +10,7 @@ import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.Title;
 
 
-
+@javax.jdo.annotations.Unique(name="Persona_numPersona_key", members = {"dni"})
 @DomainObject(bounded=true,objectType = "PERSONA")
 @PersistenceCapable(identityType=IdentityType.DATASTORE)
 public class Persona 
