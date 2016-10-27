@@ -2,6 +2,8 @@ package dominio.servicios;
 
 import java.util.Date;
 
+import javax.swing.JOptionPane;
+
 import org.apache.isis.applib.DomainObjectContainer;
 import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.MemberOrder;
@@ -130,7 +132,7 @@ public Acta lugar
 		
 		return a;
 	}
-	public boolean hideLugar
+public boolean hideLugar
 	(		 
 			Acta a,
 			 @ParameterLayout(named="Cuadro")final char cuadro,
@@ -145,9 +147,35 @@ public Acta lugar
 			salida = true;
 		return salida;
 	}
+public String eliminar(final Acta a){
+	String salida="";
+	Object [] opciones ={"Aceptar","Cancelar"};
+	int eleccion = JOptionPane.showOptionDialog(null,"Real mente desea Eliminar este acta?","Mensaje de Confirmacion",
+	JOptionPane.YES_NO_OPTION,
+	JOptionPane.QUESTION_MESSAGE,null,opciones,"Aceptar");
+	if (eleccion == JOptionPane.YES_OPTION)
+	{
+		container.remove(a);
+		salida = "Se ah eliminado correctamente el acta";
+	}
+	else{
+		salida= "No se ah eliminado el acta de "+a.getDifunto().getNombre();
+	}
+	return salida;
+
+}
+public boolean hideEliminar(final Acta a){
+	boolean salida= false;
+	if(a==null)
+		salida = true;
+	return salida;
+}
 /////////////////////////////////////////////////////--Fin Acta--/////////////////////////////////////////////////////
 	
 	
+
+
+
 	   @javax.inject.Inject 
 	    DomainObjectContainer container;
 }
